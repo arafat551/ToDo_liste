@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\TacheController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('/home',TacheController::class);
 Route::put('/home/{{id}}',[TacheController::class, 'update']);
+
+Route::resource('/utilisateur',UtilisateurController::class);
+Route::resource('/archive',ArchiveController::class);
+

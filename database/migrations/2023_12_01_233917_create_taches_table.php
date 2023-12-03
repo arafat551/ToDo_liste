@@ -17,7 +17,11 @@ class CreateTachesTable extends Migration
             $table->id();
             $table->string('titre');
             $table->string('text',255);
+            $table->boolean('status')->default(0);
+            $table->date('date_debut');
+            $table->date('date_fin');
             $table->integer('barre')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

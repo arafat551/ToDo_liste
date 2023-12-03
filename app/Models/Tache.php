@@ -12,6 +12,14 @@ class Tache extends Model
     protected $fillable = [
         'titre',
         'text',
-        'barre'
+        'status',
+        'date_debut',
+        'date_fin',
+        'barre',
+        'user_id',
     ];
+
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
 }
