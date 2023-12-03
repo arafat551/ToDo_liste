@@ -6,7 +6,7 @@ use App\Models\Tache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TacheController extends Controller
+class ArchiveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class TacheController extends Controller
     public function index()
     {
         $user = Auth()->user();
-        $tache = Tache::where('user_id', $user->id)->where('status',0)->get();
-        return view('home',compact('tache'));
+        $tache = Tache::where('user_id', $user->id)->where('status',1)->get();
+        return view('archive',compact('tache'));
     }
 
     /**
@@ -38,22 +38,7 @@ class TacheController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth()->user();
-if($user){
-
-    $tache = Tache::create([
-        'titre' =>$request->input('titre'),
-        'text' =>$request->input('text'),
-        'status' =>$request->input('status'),
-        'date_debut' =>$request->input('date_debut'),
-        'date_fin' =>$request->input('date_fin'),
-        'barre' =>$request->input('barre'),
-        'user_id' => $user->id,
-
-    ]);
-
-}
-      return redirect()->back();
+        //
     }
 
     /**
@@ -64,11 +49,7 @@ if($user){
      */
     public function show($id)
     {
-        $tache = Tache::find($id);
-        return view('home',compact('tache'));
-
-
-        
+        //
     }
 
     /**
@@ -91,9 +72,7 @@ if($user){
      */
     public function update(Request $request, $id)
     {
-        $tache = Tache::find($id);
-        $tache->update($request->all());
-        return redirect()->back();
+        //
     }
 
     /**
@@ -104,8 +83,6 @@ if($user){
      */
     public function destroy($id)
     {
-        $tache = Tache::find($id);
-        $tache->delete();
-        return redirect()->back();
+        //
     }
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tache;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class TacheController extends Controller
+class UtilisateurController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,8 @@ class TacheController extends Controller
      */
     public function index()
     {
-        $user = Auth()->user();
-        $tache = Tache::where('user_id', $user->id)->where('status',0)->get();
-        return view('home',compact('tache'));
+        $utilisateur = User::all();
+        return view('utilisateur',compact('utilisateur'));
     }
 
     /**
@@ -38,22 +36,8 @@ class TacheController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth()->user();
-if($user){
-
-    $tache = Tache::create([
-        'titre' =>$request->input('titre'),
-        'text' =>$request->input('text'),
-        'status' =>$request->input('status'),
-        'date_debut' =>$request->input('date_debut'),
-        'date_fin' =>$request->input('date_fin'),
-        'barre' =>$request->input('barre'),
-        'user_id' => $user->id,
-
-    ]);
-
-}
-      return redirect()->back();
+        $utilisateur = User::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -64,11 +48,8 @@ if($user){
      */
     public function show($id)
     {
-        $tache = Tache::find($id);
-        return view('home',compact('tache'));
-
-
-        
+        $utilisateur = User::find($id);
+        return view('utilisateur',compact('utilisateur'));
     }
 
     /**
@@ -79,7 +60,7 @@ if($user){
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -91,8 +72,8 @@ if($user){
      */
     public function update(Request $request, $id)
     {
-        $tache = Tache::find($id);
-        $tache->update($request->all());
+        $utilisateur = User::find($id);
+        $utilisateur->update($request->all());
         return redirect()->back();
     }
 
@@ -104,8 +85,8 @@ if($user){
      */
     public function destroy($id)
     {
-        $tache = Tache::find($id);
-        $tache->delete();
+        $utilisateur = User::find($id);
+        $utilisateur->delete();
         return redirect()->back();
     }
 }

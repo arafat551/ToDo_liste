@@ -3,68 +3,7 @@
 @section('content')
 <div class="container">
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="margin-left: 80%;">
-<i class="fa fa-plus" aria-hidden="true"></i>
-Ajouter une tâche
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h1 class="modal-title fs-5  text-light" id="exampleModalLabel">Nouvelle tâche</h1>
-        <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="col-12" style=" padding:3%">
-   <form method="POST">
-      @csrf
-    <div class="mb-3">
-      <label class="from-label">Titre de la tâche</label>
-    <input type="text" name="titre" class="form-control" placeholder="Entrez un titre" required>
-    </div>
-    <div class="mb-3">
-    <label class="from-label">Description de la tâche</label>
-      <textarea name="text" cols="30" rows="5" class="form-control"></textarea>
-    </div>
-    <div class="mb-3">
-    <label class="from-label">Pourcentage de la tâche</label>
-    <input type="range" max="100" min="0" value="0" name="barre" class="form-range"> 
-    </div>
-      <div class="mb-3">
-        <select name="status" class="form-control">
-        <option value="0">Pas commencé</option>
-        <option value="1">Terminer</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <div class="row">
-        <div class="col">
-          <label>Date de début</label>
-        <input type="date" name="date_debut" class="form-control">
-      </div>
-
-      <div class="col">
-      <label>Date de fin</label>
-        <input type="date" name="date_fin" class="form-control">
-      </div>
-        </div>
-   
-      </div>
-    <button type="submit" class="btn btn-success"> Valider</button>
-   </form>
-   </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h3 style="text-align:center;text-decoration:underline;font-family:'Times New Roman', Times, serif">Liste des tâches</h3>
+<h3 style="text-align:center;text-decoration:underline;font-family:'Times New Roman', Times, serif">Liste des tâches Archivées</h3>
    <div class="The_card mt-5">
    <div class="row">
       @foreach( $tache as $ta)
@@ -72,7 +11,7 @@ Ajouter une tâche
 
    <div class="card mb-3" style="width: 18rem;">
   <div class="card-body">
-    <p class="bg-secondary text-light"># Tâche</p>
+    <p class="bg-danger text-light"># Tâche</p>
     @if($ta ->updated_at > $ta->date_fin)
         <p><i class="fa fa-circle text-success" aria-hidden="true"></i></p>
         @else
