@@ -11,7 +11,7 @@
 
    <div class="card mb-3" style="width: 18rem;">
   <div class="card-body">
-    <p class="bg-danger text-light"># Tâche</p>
+    <p class="bg-danger text-light" style="background-color:purple;border:purple"># Tâche</p>
     @if($ta ->updated_at > $ta->date_fin)
         <p><i class="fa fa-circle text-success" aria-hidden="true"></i></p>
         @else
@@ -164,7 +164,13 @@
    </div>
    </div>
    </div>
+   
          </div>
+         <form method="POST" action="/archive/{{$ta->id}}" >
+      @method('DELETE')
+      @csrf
+      <button class="btn btn-danger" style="margin-left: 30%;">Suppression</button>
+    </form>
   </div>
   </div>
 </div>
@@ -181,5 +187,6 @@
     td{
       text-align: center;
     }
+
 </style>
 @endsection
