@@ -4,7 +4,7 @@
 <div class="container">
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="margin-left: 80%;">
+<button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="margin-left: 80%;">
 <i class="fa fa-plus" aria-hidden="true"></i>
 Ajouter une tâche
 </button>

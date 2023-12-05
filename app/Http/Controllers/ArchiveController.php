@@ -16,8 +16,11 @@ class ArchiveController extends Controller
     public function index()
     {
         $user = Auth()->user();
-        $tache = Tache::where('user_id', $user->id)->where('status',1)->get();
-        return view('archive',compact('tache'));
+        if($user){
+            $tache = Tache::where('user_id', $user->id)->where('status',1)->get();
+            return view('archive',compact('tache'));
+        }
+      
     }
 
     /**
@@ -49,7 +52,8 @@ class ArchiveController extends Controller
      */
     public function show($id)
     {
-        //
+        $tache = Tache::find($id);
+        return view('archive',compact('tache'));
     }
 
     /**
@@ -83,6 +87,8 @@ class ArchiveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tache = Tache::find($id);
+        $tache->delete();
+        return redirect()->back();
     }
 }
