@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
-
+  <a href="pdf">
+  <button class="btn btn-danger mt-5" style="margin-left: 80%;">Télécharger le PDF</button>
+  </a>
 <h3 style="text-align:center;text-decoration:underline;font-family:'Times New Roman', Times, serif">Liste des tâches Archivées</h3>
    <div class="The_card mt-5">
    <div class="row">
