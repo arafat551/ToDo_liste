@@ -41,7 +41,7 @@
                     <ul class="navbar-nav ms-auto">
                     
                             <a href="home">
-                            <button class="btn btn-info me-2">Tâche</button>
+                            <button class="btn btn-info me-2 text-light">Tâche</button>
                             </a>
 
                             <a href="archive">
