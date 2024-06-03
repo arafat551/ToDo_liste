@@ -1,5 +1,5 @@
 on: push
-name: 🚀 Déployer l'application Laravel à chaque push
+name: 🚀 Déployer le site web à chaque push
 jobs:
   web-deploy:
     name: 🎉 Déploiement
@@ -8,46 +8,11 @@ jobs:
     - name: 🚚 Récupérer le code le plus récent
       uses: actions/checkout@v4
 
-    - name: Configurer PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.0'  # Utilisez la version PHP requise par votre projet
-
-    - name: Installer les extensions PHP nécessaires
-      run: sudo apt-get install -y libzip-dev zip unzip && docker-php-ext-install zip
-
-    - name: 📦 Installer les dépendances Composer
-      run: composer install --no-dev --prefer-dist --no-progress --no-suggest
-
-    - name: 🔑 Générer la clé d'application
-      run: php artisan key:generate
-      env:
-        APP_ENV: production
-        APP_KEY: ${{ secrets.APP_KEY }}
-        APP_DEBUG: false
-        APP_URL: ${{ secrets.APP_URL }}
-
-    - name: Utiliser Node.js 16
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-      
-    - name: Installer les dépendances npm
-      run: npm install
-
-    - name: 🔨 Compiler les assets
-      run: npm run prod
-
     - name: 📂 Synchroniser les fichiers
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ${{ secrets.FTP_SERVER }}
+        server: ftp.samkirkland.com
         username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password}}
+        password: ${{ secrets.ftp_password }}
+        protocol: ftps
         server_dir: htdocs/
-
-    - name: 📦 Déployer la configuration Laravel
-      run: |
-        php artisan config:cache
-        php artisan route:cache
-        php artisan view:cache
